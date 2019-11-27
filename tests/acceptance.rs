@@ -11,8 +11,8 @@
 #![forbid(unsafe_code)]
 
 use abscissa_core::testing::prelude::*;
-use synchronicity::config::SynchronicityConfig;
 use lazy_static::lazy_static;
+use synchronicity::config::SynchronicityConfig;
 
 lazy_static! {
     /// Executes your application binary via `cargo run`.
