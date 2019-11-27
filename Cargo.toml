@@ -5,7 +5,7 @@ Distributed build system providing cryptographic proofs-of-reproducibility
 via Byzantine Fault Tolerant (BFT) consensus.
 """
 authors    = ["Tony Arcieri <tony@iqlusion.io>"]
-version    = "0.0.0"
+version    = "0.0.1"
 repository = "https://github.com/iqlusioninc/synchronicity"
 edition    = "2018"
 license    = "Apache-2.0"
