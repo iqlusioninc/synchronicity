@@ -10,8 +10,8 @@
 
 —The Police, *Synchronicity I*
 
-Distributed reproducible build system providing causally connectable
-proofs-of-reproducibility via Byzantine Fault Tolerant (BFT) consensus.
+Distributed build system providing cryptographic proofs-of-reproducibility
+via Byzantine Fault Tolerant (BFT) consensus.
 
 [Documentation](https://bitly.com/98K8eH)
 
