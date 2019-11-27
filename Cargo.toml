@@ -1,8 +1,20 @@
 [package]
 name = "synchronicity"
-authors = []
-version = "0.1.0"
-edition = "2018"
+description = """
+Distributed build system providing cryptographic proofs-of-reproducibility
+via Byzantine Fault Tolerant (BFT) consensus.
+"""
+authors    = ["Tony Arcieri <tony@iqlusion.io>"]
+version    = "0.0.0"
+repository = "https://github.com/iqlusioninc/synchronicity"
+edition    = "2018"
+license    = "Apache-2.0"
+readme     = "README.md"
+categories = ["command-line-utilities", "development-tools::build-utils", "rust-patterns"]
+keywords   = ["bft", "libra", "reproducible-builds"]
+
+[badges]
+maintenance = { status = "experimental" }
 
 [dependencies]
 abscissa_core = "0.4.0"
