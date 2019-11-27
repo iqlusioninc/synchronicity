@@ -1,9 +1,10 @@
 # Synchronicity <a href="https://www.iqlusion.io"><img src="https://storage.googleapis.com/iqlusion-production-web/img/logo/iqlusion-rings-sm.png" alt="iqlusion" width="24" height="24"></a>
 
-[![Crate][crate-image]][crate-link]
-[![Docs][docs-image]][docs-link]
-![MSRV 1.39+][msrv-image]
+[![Build Status][build-image]][build-link]
+[![Safety Dance][safety-image]][safety-link]
+![MSRV][msrv-image]
 [![Apache 2.0 Licensed][license-image]][license-link]
+[![Gitter Chat][gitter-image]][gitter-link]
 
 > A connecting principle linked to the invisible.  
 > Almost imperceptible. Something inexpressible.
@@ -18,7 +19,7 @@ via Byzantine Fault Tolerant (BFT) consensus.
 ## About
 
 **Synchronicity** is a distributed build system for Rust crates which have
-been published to [crates.io] which builds them inside of Docker
+been published to [crates.io]. It builds crates reproducibly inside of Docker
 containers managed using [Rustwide], the core library behind tools like
 [Crater] and [docs.rs].
 
@@ -39,8 +40,8 @@ clients interested in determining if they should trust a particular build can
 request cryptographic proof-of-inclusion that it has been successfully
 reproduced. So long as a threshold of the group does not collude to publish
 fraudulent reproducibility results, this cryptographic proof can be trusted
-as evidence that a build is reproducible from the original source code
-published on [crates.io].
+as evidence that a build with a matching hash is reproducible from the
+original source code published on [crates.io].
 
 ## Status
 
@@ -59,7 +60,7 @@ For more information, please see [CODE_OF_CONDUCT.md][cc-md].
 
 ## License
 
-Copyright © 2019 iqlusion, The Libra Core Contributors.
+Copyright © 2019 iqlusion
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -81,13 +82,15 @@ without any additional terms or conditions.
 
 [//]: # (badges)
 
-[crate-image]: https://img.shields.io/crates/v/synchronicity.svg
-[crate-link]: https://crates.io/crates/synchronicity
-[docs-image]: https://docs.rs/synchronicity/badge.svg
-[docs-link]: https://docs.rs/synchronicity/
+[build-image]: https://github.com/iqlusioninc/synchronicity/workflows/Rust/badge.svg
+[build-link]: https://github.com/iqlusioninc/synchronicity/actions
+[safety-image]: https://img.shields.io/badge/unsafe-forbidden-success.svg
+[safety-link]: https://github.com/rust-secure-code/safety-dance/
 [msrv-image]: https://img.shields.io/badge/rustc-1.39+-blue.svg
 [license-image]: https://img.shields.io/badge/license-Apache2.0-blue.svg
-[license-link]: https://github.com/iqlusion/synchronicity/blob/master/LICENSE
+[license-link]: https://github.com/iqlusioninc/synchronicity/blob/master/LICENSE
+[gitter-image]: https://badges.gitter.im/badge.svg
+[gitter-link]: https://gitter.im/iqlusioninc/community
 
 [//]: # (general links)
 

@@ -7,25 +7,17 @@ use abscissa_core::{
 use lazy_static::lazy_static;
 
 lazy_static! {
-    /// Application state
     pub static ref APPLICATION: application::Lock<SynchronicityApp> = application::Lock::default();
 }
 
-/// Obtain a read-only (multi-reader) lock on the application state.
-///
-/// Panics if the application state has not been initialized.
 pub fn app_reader() -> application::lock::Reader<SynchronicityApp> {
     APPLICATION.read()
 }
 
-/// Obtain an exclusive mutable lock on the application state.
 pub fn app_writer() -> application::lock::Writer<SynchronicityApp> {
     APPLICATION.write()
 }
 
-/// Obtain a read-only (multi-reader) lock on the application configuration.
-///
-/// Panics if the application configuration has not been loaded.
 pub fn app_config() -> config::Reader<SynchronicityApp> {
     config::Reader::new(&APPLICATION)
 }
@@ -41,9 +33,6 @@ pub struct SynchronicityApp {
 }
 
 /// Initialize a new application instance.
-///
-/// By default no configuration is loaded, and the framework state is
-/// initialized to a default, empty state (no components, threads, etc).
 impl Default for SynchronicityApp {
     fn default() -> Self {
         Self {
@@ -79,20 +68,12 @@ impl Application for SynchronicityApp {
     }
 
     /// Register all components used by this application.
-    ///
-    /// If you would like to add additional components to your application
-    /// beyond the default ones provided by the framework, this is the place
-    /// to do so.
     fn register_components(&mut self, command: &Self::Cmd) -> Result<(), FrameworkError> {
         let components = self.framework_components(command)?;
         self.state.components.register(components)
     }
 
     /// Post-configuration lifecycle callback.
-    ///
-    /// Called regardless of whether config is loaded to indicate this is the
-    /// time in app lifecycle when configuration would be loaded if
-    /// possible.
     fn after_config(&mut self, config: Self::Cfg) -> Result<(), FrameworkError> {
         // Configure components
         self.state.components.after_config(&config)?;
