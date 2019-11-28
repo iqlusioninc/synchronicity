@@ -3000,9 +3000,14 @@ dependencies = [
 
 [[package]]
 name = "synchro"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "consensus 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
+ "executor 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
+ "libra-config 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
+ "libra-crypto 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
+ "libra-types 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
+ "parity-multiaddr 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -3014,6 +3019,7 @@ dependencies = [
  "gumdrop 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "lazy_static 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.103 (registry+https://github.com/rust-lang/crates.io-index)",
+ "synchro 0.1.0",
 ]
 
 [[package]]
