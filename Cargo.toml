@@ -13,6 +13,9 @@ readme     = "README.md"
 categories = ["command-line-utilities", "development-tools::build-utils", "rust-patterns"]
 keywords   = ["bft", "libra", "reproducible-builds"]
 
+[workspace]
+members = [".", "synchro"]
+
 [badges]
 maintenance = { status = "experimental" }
 
