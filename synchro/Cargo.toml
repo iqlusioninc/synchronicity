@@ -1,0 +1,20 @@
+[package]
+name = "synchro"
+description = """
+Byzantine Fault Tolerant consensus library built on HotStuff BFT
+used by the Synchronicity reproducible build system
+"""
+authors    = ["Tony Arcieri <tony@iqlusion.io>"]
+version    = "0.0.0"
+homepage   = "https://github.com/iqlusioninc/synchronicity"
+repository = "https://github.com/iqlusioninc/synchronicity/tree/develop/synchro"
+edition    = "2018"
+license    = "Apache-2.0"
+readme     = "README.md"
+categories = ["algorithms", "api-bindings", "asynchronous", "network-programming"]
+keywords   = ["bft", "consensus", "hotstuff", "libra"]
+
+[badges]
+maintenance = { status = "experimental" }
+
+[dependencies]

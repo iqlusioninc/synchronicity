@@ -346,6 +346,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "synchro"
+version = "0.0.0"
+
+[[package]]
 name = "synchronicity"
 version = "0.0.1"
 dependencies = [
