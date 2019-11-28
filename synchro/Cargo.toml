@@ -18,3 +18,4 @@ keywords   = ["bft", "consensus", "hotstuff", "libra"]
 maintenance = { status = "experimental" }
 
 [dependencies]
+consensus = { git = "https://github.com/iqlusioninc/libra.git", branch = "synchro" }
