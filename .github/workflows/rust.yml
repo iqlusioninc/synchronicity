@@ -50,7 +50,7 @@ jobs:
           RUSTFLAGS: -D warnings
         with:
           command: test
-          args: --release
+          args: --all --release
 
   fmt:
     name: Rustfmt
@@ -94,7 +94,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: -- -D warnings
+          args: --all -- -D warnings
 
   # TODO: use actions-rs/audit-check
   security_audit:

@@ -1,3 +1,7 @@
 //! Synchro
 
-pub use consensus::chained_bft::chained_bft_consensus_provider::ChainedBftProvider;
+pub mod config;
+
+pub use consensus;
+pub use executor;
+pub use types;
