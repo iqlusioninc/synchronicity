@@ -21,7 +21,7 @@ maintenance = { status = "experimental" }
 consensus = { git = "https://github.com/iqlusioninc/libra.git", branch = "synchro" }
 executor = { git = "https://github.com/iqlusioninc/libra.git", branch = "synchro" }
 libra-config = { git = "https://github.com/iqlusioninc/libra.git", branch = "synchro" }
-parity-multiaddr = { version = "0.5", default-features = false }
+parity-multiaddr = { version = "0.6", default-features = false }
 
 [dependencies.crypto]
 package = "libra-crypto"
