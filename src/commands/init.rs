@@ -1,8 +1,12 @@
 //! `init` subcommand
 
-use crate::prelude::*;
+use crate::{config::CONFIG_FILE, prelude::*};
 use abscissa_core::{Command, Options, Runnable};
-use std::{fs, path::PathBuf, process::exit};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+    process::exit,
+};
 use synchro::config::{self, peer_info, KeySeed};
 
 /// Derivation component used when computing seed
@@ -23,20 +27,62 @@ pub struct InitCmd {
 impl Runnable for InitCmd {
     /// Initialize application configuration.
     fn run(&self) {
+        let base_dir = self.prepare_base_dir();
+
+        // TODO(tarcieri): support for reusing a previously generated `KeySeed`
+        let key_seed = KeySeed::generate();
+
+        self.generate_synchronicity_toml(&base_dir);
+        self.generate_libra_configs(&base_dir, key_seed);
+    }
+}
+
+impl InitCmd {
+    /// Ensure the base directory exists
+    pub fn prepare_base_dir(&self) -> PathBuf {
         if self.base_dir.len() != 1 {
             status_err!("usage: synchronicity init /path/to/syncronicity/base/dir");
             exit(1);
         }
 
-        // TODO(tarcieri): support for reusing a previously generated `KeySeed`
-        let key_seed = KeySeed::generate();
+        let base_dir = self.base_dir[0].canonicalize().unwrap_or_else(|e| {
+            status_err!("couldn't canonicalize base dir: {}", e);
+            exit(1);
+        });
 
-        let base_dir = self.base_dir[0].as_path();
-        fs::create_dir_all(base_dir).unwrap_or_else(|e| {
+        // Create the scratch dir, which will ensure the parent also exists
+        fs::create_dir_all(base_dir.join("scratch")).unwrap_or_else(|e| {
             status_err!("couldn't create base dir: {}", e);
             exit(1);
         });
 
+        base_dir
+    }
+
+    /// Generate Synchronicity-specific config file (i.e. `synchronicity.toml`)
+    pub fn generate_synchronicity_toml(&self, base_dir: &Path) {
+        // TODO(tarcieri): better templating
+        let config_data = format!(
+            "# serendipity.toml: configuration file for Serendipity\n\
+             node_config = \"{}\"\n\
+             scratch_dir = \"{}\"\n\
+             ",
+            base_dir.join("node.config.toml").display(),
+            base_dir.join("scratch/").display()
+        );
+
+        let config_path = base_dir.join(CONFIG_FILE);
+
+        fs::write(&config_path, config_data).unwrap_or_else(|e| {
+            status_err!("couldn't write {}: {}", config_path.display(), e);
+            exit(1);
+        });
+
+        status_ok!("Generated", "{}", config_path.display());
+    }
+
+    /// Generate configuration files specific to Libra
+    pub fn generate_libra_configs(&self, base_dir: &Path, key_seed: KeySeed) {
         let mut builder = config::Builder::new(key_seed);
         builder.with_output_dir(base_dir);
 

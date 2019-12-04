@@ -5,12 +5,9 @@ mod start;
 mod version;
 
 use self::{init::InitCmd, start::StartCmd, version::VersionCmd};
-use crate::config::SynchronicityConfig;
+use crate::config::{SynchronicityConfig, CONFIG_FILE};
 use abscissa_core::{Command, Configurable, Help, Options, Runnable};
 use std::path::PathBuf;
-
-/// Synchronicity Configuration Filename
-pub const CONFIG_FILE: &str = "synchronicity.toml";
 
 /// Synchronicity Subcommands
 #[derive(Command, Debug, Options, Runnable)]
