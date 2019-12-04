@@ -1201,6 +1201,19 @@ version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "hkd32"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "getrandom 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "hmac 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "lazy_static 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sha2 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "subtle-encoding 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "zeroize 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "hmac"
 version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2979,6 +2992,14 @@ version = "2.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "subtle-encoding"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "zeroize 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "syn"
 version = "0.15.44"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3004,10 +3025,12 @@ version = "0.1.0"
 dependencies = [
  "consensus 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
  "executor 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
+ "hkd32 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "libra-config 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
  "libra-crypto 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
  "libra-types 0.1.0 (git+https://github.com/iqlusioninc/libra.git?branch=synchro)",
  "parity-multiaddr 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "serde 1.0.103 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -3020,6 +3043,7 @@ dependencies = [
  "lazy_static 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.103 (registry+https://github.com/rust-lang/crates.io-index)",
  "synchro 0.1.0",
+ "tempfile 3.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -3887,6 +3911,20 @@ dependencies = [
 name = "zeroize"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "zeroize_derive 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "zeroize_derive"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "proc-macro2 1.0.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "quote 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "syn 1.0.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "synstructure 0.12.3 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "zstd-sys"
@@ -4024,6 +4062,7 @@ dependencies = [
 "checksum hermit-abi 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)" = "307c3c9f937f38e3534b1d6447ecf090cafcc9744e4a6360e8b037b2cf5af120"
 "checksum hex 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)" = "805026a5d0141ffc30abb3be3173848ad46a1b1664fe632428479619a3644d77"
 "checksum hex_fmt 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "b07f60793ff0a4d9cef0f18e63b5357e06209987153a64648c972c1e5aff336f"
+"checksum hkd32 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)" = "4ec8449a5d1c7ea34a75bc45e91097d2768dfb056f37fa55a465f3c3ba7c0721"
 "checksum hmac 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)" = "5dcb5e64cda4c23119ab41ba960d1e170a774c8e4b9d9e6a9bc18aabf5e59695"
 "checksum http 0.1.20 (registry+https://github.com/rust-lang/crates.io-index)" = "2790658cddc82e82b08e25176c431d7015a0adeb1718498715cbd20138a0bf68"
 "checksum http-body 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "6741c859c1b2463a423a1dbce98d418e6c3c3fc720fb0d45528657320920292d"
@@ -4209,6 +4248,7 @@ dependencies = [
 "checksum structopt-derive 0.3.5 (registry+https://github.com/rust-lang/crates.io-index)" = "ea692d40005b3ceba90a9fe7a78fa8d4b82b0ce627eebbffc329aab850f3410e"
 "checksum subtle 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = "2d67a5a62ba6e01cb2192ff309324cb4875d0c451d55fe2319433abe7a05a8ee"
 "checksum subtle 2.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "7c65d530b10ccaeac294f349038a597e435b18fb456aadd0840a623f83b9e941"
+"checksum subtle-encoding 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "cbc5188a16f729680b6d495b0deaa776944b8e509d24b7f989489b0d8bbcb63b"
 "checksum syn 0.15.44 (registry+https://github.com/rust-lang/crates.io-index)" = "9ca4b3b69a77cbe1ffc9e198781b7acb0c7365a883670e8f1c1bc66fba79a5c5"
 "checksum syn 1.0.8 (registry+https://github.com/rust-lang/crates.io-index)" = "661641ea2aa15845cddeb97dad000d22070bb5c1fb456b96c1cba883ec691e92"
 "checksum synstructure 0.12.3 (registry+https://github.com/rust-lang/crates.io-index)" = "67656ea1dc1b41b1451851562ea232ec2e5a80242139f7e679ceccfb5d61f545"
@@ -4296,4 +4336,5 @@ dependencies = [
 "checksum x25519-dalek 0.5.2 (registry+https://github.com/rust-lang/crates.io-index)" = "7ee1585dc1484373cbc1cee7aafda26634665cf449436fd6e24bfd1fad230538"
 "checksum yamux 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "2758f29014c1cb7a6e74c1b1160ac8c8203be342d35b73462fc6a13cc6385423"
 "checksum zeroize 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = "cdc979d9b5ead18184c357c4d8a3f81b579aae264e32507223032e64715462d3"
+"checksum zeroize_derive 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = "de251eec69fc7c1bc3923403d18ececb929380e016afe103da75f396704f8ca2"
 "checksum zstd-sys 1.4.15+zstd.1.4.4 (git+https://github.com/gyscos/zstd-rs.git)" = "<none>"
