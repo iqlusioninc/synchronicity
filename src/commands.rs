@@ -1,9 +1,10 @@
 //! Synchronicity Subcommands
 
+mod init;
 mod start;
 mod version;
 
-use self::{start::StartCmd, version::VersionCmd};
+use self::{init::InitCmd, start::StartCmd, version::VersionCmd};
 use crate::config::SynchronicityConfig;
 use abscissa_core::{Command, Configurable, Help, Options, Runnable};
 use std::path::PathBuf;
@@ -18,13 +19,17 @@ pub enum SynchronicityCmd {
     #[options(help = "get usage information")]
     Help(Help<Self>),
 
-    /// The `start` subcommand
-    #[options(help = "start the application")]
-    Start(StartCmd),
-
     /// The `version` subcommand
     #[options(help = "display version information")]
     Version(VersionCmd),
+
+    /// The `init` subcommand
+    #[options(help = "initialize application home/config")]
+    Init(InitCmd),
+
+    /// The `start` subcommand
+    #[options(help = "start the application")]
+    Start(StartCmd),
 }
 
 impl Configurable<SynchronicityConfig> for SynchronicityCmd {

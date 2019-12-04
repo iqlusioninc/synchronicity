@@ -18,13 +18,28 @@ keywords   = ["bft", "consensus", "hotstuff", "libra"]
 maintenance = { status = "experimental" }
 
 [dependencies]
-consensus = { git = "https://github.com/iqlusioninc/libra.git", branch = "synchro" }
-executor = { git = "https://github.com/iqlusioninc/libra.git", branch = "synchro" }
-libra-config = { git = "https://github.com/iqlusioninc/libra.git", branch = "synchro" }
+hkd32 = { version = "0.3", features = ["mnemonic"] }
 parity-multiaddr = { version = "0.5", default-features = false }
+serde = { version = "1", features = ["serde_derive"] }
+
+#
+# Libra Core Dependencies
+#
+
+[dependencies.consensus]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
 
 [dependencies.crypto]
 package = "libra-crypto"
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.executor]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.libra-config]
 git = "https://github.com/iqlusioninc/libra.git"
 branch = "synchro"
 
