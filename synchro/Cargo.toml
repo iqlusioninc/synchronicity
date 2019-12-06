@@ -18,20 +18,45 @@ keywords   = ["bft", "consensus", "hotstuff", "libra"]
 maintenance = { status = "experimental" }
 
 [dependencies]
+futures = "0.1.28"
+grpcio = { version = "=0.5.0-alpha.4", default-features = false }
 hkd32 = { version = "0.3", features = ["mnemonic"] }
+log = "0.4"
 parity-multiaddr = { version = "0.5", default-features = false }
 serde = { version = "1", features = ["serde_derive"] }
+tokio = "0.2.0-alpha.6"
 
 #
-# Libra Core Dependencies
+# Libra core dependencies
 #
 
-[dependencies.consensus]
+[dependencies.libra-config]
 git = "https://github.com/iqlusioninc/libra.git"
 branch = "synchro"
 
-[dependencies.crypto]
-package = "libra-crypto"
+[dependencies.libra-crypto]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.libra-failure-ext]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.libra-mempool]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.libra-state-view]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.libra-types]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+# Non-`libra` prefixed Libra core dependencies
+
+[dependencies.consensus]
 git = "https://github.com/iqlusioninc/libra.git"
 branch = "synchro"
 
@@ -39,11 +64,26 @@ branch = "synchro"
 git = "https://github.com/iqlusioninc/libra.git"
 branch = "synchro"
 
-[dependencies.libra-config]
+[dependencies.grpc-helpers]
 git = "https://github.com/iqlusioninc/libra.git"
 branch = "synchro"
 
-[dependencies.types]
-package = "libra-types"
+[dependencies.network]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.state-synchronizer]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.storage-client]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.vm-runtime]
+git = "https://github.com/iqlusioninc/libra.git"
+branch = "synchro"
+
+[dependencies.vm-validator]
 git = "https://github.com/iqlusioninc/libra.git"
 branch = "synchro"
