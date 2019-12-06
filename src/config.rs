@@ -3,6 +3,7 @@
 use abscissa_core::Config;
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
+use synchro::config::{NodeConfig, PersistableConfig};
 
 /// Synchronicity Configuration Filename
 pub const CONFIG_FILE: &str = "synchronicity.toml";
@@ -16,4 +17,11 @@ pub struct SynchronicityConfig {
 
     /// Scratch directory
     pub scratch_dir: PathBuf,
+}
+
+impl SynchronicityConfig {
+    /// Load [`NodeConfig`] from the configured location
+    pub fn load_node_config(&self) -> NodeConfig {
+        NodeConfig::load_config(&self.node_config)
+    }
 }
