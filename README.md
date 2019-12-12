@@ -82,7 +82,7 @@ without any additional terms or conditions.
 
 [//]: # (badges)
 
-[build-image]: https://github.com/iqlusioninc/synchronicity/workflows/Rust/badge.svg
+[build-image]: https://github.com/iqlusioninc/synchronicity/workflows/Rust/badge.svg?branch=develop&event=push
 [build-link]: https://github.com/iqlusioninc/synchronicity/actions
 [safety-image]: https://img.shields.io/badge/unsafe-forbidden-success.svg
 [safety-link]: https://github.com/rust-secure-code/safety-dance/
