@@ -23,10 +23,33 @@ been published to [crates.io]. It builds crates reproducibly inside of Docker
 containers managed using [Rustwide], the core library behind tools like
 [Crater] and [docs.rs].
 
+### Goal
+
+The goal of **Synchronicity** is to provide a distributed
+[binary transparency] (BT) system for Rust crates which is independent of
+any one central operator. BT systems checkpoint content hashes of binaries
+in an append-only log which, if nothing else, ensures that forensic evidence
+of all builds is logged in a fairly permanent way.
+
+This is helpful in situations where it would be desirable to use pre-built
+binaries of crates, such as distributed build caches. In such a situation,
+a binary transparency system can ensure that the artifact one receives is
+the same as everyone else is receiving in a way that can't be easily
+altered by an attacker.
+
+By using a system based on reproducible builds, **Synchronicity** is also
+able to provide high confidence that binary artifacts are faithful to their
+original source code using cryptographic proofs that are easy to obtain
+and verify (even by an offline party/process). This helps prevent a malicious
+builder from inserting trojans in the source code prior to performing a
+build (or at least, ideally makes it much more difficult).
+
+### Operational Details
+
 Builders running **Synchronicity** also run a BFT consensus algorithm between
 each other (as part of a closed, "permissioned" group), and in doing so come to
 agreement on whether or not a build was successfully reproduced by a threshold
-of the group. Consensus is provided by [Libra's HotStuff BFT][hotstuff].
+of the group's members. Consensus is provided by [Libra's HotStuff BFT][hotstuff].
 
 Any builder can submit a build to be run by the rest of the group. The results
 of the build are then published as part of a commit-and-reveal scheme.
@@ -42,6 +65,16 @@ reproduced. So long as a threshold of the group does not collude to publish
 fraudulent reproducibility results, this cryptographic proof can be trusted
 as evidence that a build with a matching hash is reproducible from the
 original source code published on [crates.io].
+
+Cryptographic proofs of reproducibility are static artifacts that can be
+obtained once and included along with a build, ensuring privacy for
+verifiers who do not want to reveal to a central service which proofs they
+are verifying.
+ 
+Verification can be performed offline by consumers of binary artifacts.
+Proofs can be passed as static strings/files (or potentially included
+into the binary artifacts themselves) and verified offline by the actual
+build workers.
 
 ## Status
 
@@ -98,6 +131,7 @@ without any additional terms or conditions.
 [Rustwide]: https://github.com/rust-lang/rustwide
 [Crater]: https://github.com/rust-lang/crater
 [docs.rs]: https://docs.rs/about
+[binary transparency]: https://wiki.mozilla.org/Security/Binary_Transparency
 [hotstuff]: https://github.com/libra/libra/tree/master/consensus
 [cc-web]: https://contributor-covenant.org/
 [cc-md]: https://github.com/iqlusioninc/synchronicity/blob/develop/CODE_OF_CONDUCT.md
