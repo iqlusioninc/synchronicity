@@ -1,11 +1,11 @@
 [package]
-name = "synchronicity"
+name    = "synchronicity"
+version = "0.0.1"
 description = """
 Distributed build system providing cryptographic proofs-of-reproducibility
 via BFT consensus.
 """
 authors    = ["Tony Arcieri <tony@iqlusion.io>"]
-version    = "0.0.1"
 repository = "https://github.com/iqlusioninc/synchronicity"
 edition    = "2018"
 license    = "Apache-2.0"
@@ -20,16 +20,15 @@ members = [".", "synchro"]
 maintenance = { status = "experimental" }
 
 [dependencies]
-abscissa_core = "0.4.0"
-failure = "0.1"
+abscissa_core = "0.5"
 gumdrop = "0.7"
-lazy_static = "1"
 serde = { version = "1", features = ["serde_derive"] }
 synchro = { version = "0.1", path = "synchro" }
+thiserror = "1"
 
 [dev-dependencies]
 tempfile = "3"
 
 [dev-dependencies.abscissa_core]
-version = "0.4.0"
+version = "0.5"
 features = ["testing"]

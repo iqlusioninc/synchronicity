@@ -2,22 +2,24 @@
 
 use crate::{commands::SynchronicityCmd, config::SynchronicityConfig};
 use abscissa_core::{
-    application, config, logging, Application, EntryPoint, FrameworkError, StandardPaths,
+    application::{self, AppCell},
+    config, trace, Application, EntryPoint, FrameworkError, StandardPaths,
 };
-use lazy_static::lazy_static;
 
-lazy_static! {
-    pub static ref APPLICATION: application::Lock<SynchronicityApp> = application::Lock::default();
-}
+/// Application state
+pub static APPLICATION: AppCell<SynchronicityApp> = AppCell::new();
 
+/// App state reader
 pub fn app_reader() -> application::lock::Reader<SynchronicityApp> {
     APPLICATION.read()
 }
 
+/// App state writer
 pub fn app_writer() -> application::lock::Writer<SynchronicityApp> {
     APPLICATION.write()
 }
 
+/// App config reader
 pub fn app_config() -> config::Reader<SynchronicityApp> {
     config::Reader::new(&APPLICATION)
 }
@@ -81,12 +83,12 @@ impl Application for SynchronicityApp {
         Ok(())
     }
 
-    /// Get logging configuration from command-line options
-    fn logging_config(&self, command: &EntryPoint<SynchronicityCmd>) -> logging::Config {
+    /// Get tracing configuration from command-line options
+    fn tracing_config(&self, command: &EntryPoint<SynchronicityCmd>) -> trace::Config {
         if command.verbose {
-            logging::Config::verbose()
+            trace::Config::verbose()
         } else {
-            logging::Config::default()
+            trace::Config::default()
         }
     }
 }
