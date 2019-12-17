@@ -1,6 +1,5 @@
 //! Synchronicity Configuration
 
-use abscissa_core::Config;
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 use synchro::config::{NodeConfig, PersistableConfig};
@@ -9,7 +8,7 @@ use synchro::config::{NodeConfig, PersistableConfig};
 pub const CONFIG_FILE: &str = "synchronicity.toml";
 
 /// Synchronicity Configuration
-#[derive(Clone, Config, Debug, Default, Deserialize, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SynchronicityConfig {
     /// Node config directory
